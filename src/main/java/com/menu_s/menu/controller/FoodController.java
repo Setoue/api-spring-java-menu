@@ -2,6 +2,7 @@ package com.menu_s.menu.controller;
 
 import java.util.List;
 
+import com.menu_s.menu.food.FoodResponseDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,7 +19,7 @@ public class FoodController {
     private FoodRepository repository;
     
     @GetMapping
-    public List<Food> getAll(){
-        return repository.findAll();
+    public List<FoodResponseDTO> getAll(){
+        return repository.findAll().stream().map(FoodResponseDTO::new).toList();
     }
 }
